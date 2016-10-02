@@ -13,7 +13,7 @@
         var promise = $q.defer();
         $http({
           method: 'GET',
-          url: 'http://food2fork.com/api/search',
+          url: 'https://food2fork.com/api/search',
           params: {
             key: '70b859c8408ff3d711daad538ff406cd',
             page: pageNumber
@@ -38,7 +38,7 @@
         
         $http ({
           method: 'GET',
-          url: 'http://food2fork.com/api/get',
+          url: 'https://food2fork.com/api/get',
             params: {
             key: '70b859c8408ff3d711daad538ff406cd',
             rId: recipeId
