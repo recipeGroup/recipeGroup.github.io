@@ -1,0 +1,20 @@
+<!--160928-recipeApp_my-recipes_html-->
+<ion-pane>
+  <!-- displays icon to acces users recipes -->
+  <ion-header-bar class="bar-positive" align-title="center" ng-show="!vm.selectedRecipe">
+    <div style="text-align: center; margin-left: .2em;" ng-show="vm.user">
+      <i ng-show="!vm.user.photoURL" ui-sref="tabs.profile" class="icon ion-person avatar"/></i>
+      <img ng-show="vm.user.photoURL" ui-sref="tabs.profile" class="imgDName" ng-src="{{vm.user.photoURL}}">
+      <p class="avText">{{vm.displayName}}</p>
+    </div>
+    <h1 class="title">My Recipes</h1>
+  </ion-header-bar>
+  <ion-content ng-show="!vm.recipes" class="flex-row has-header has-subheader" >
+    <ion-spinner ></ion-spinner>
+  </ion-content>
+  <ion-content id="myRecipeComponent" ng-show="vm.recipes" class="has-header has-subheader">
+    <button class="button button-full button-stable" on-tap="vm.goToThisRecipe(recipe)" ng-repeat="recipe in vm.recipes">
+      {{recipe.title}}
+  </button>
+  </ion-content>
+</ion-pane>

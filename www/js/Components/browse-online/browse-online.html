@@ -1,0 +1,58 @@
+<!-- 160928-recipeApp_browse-online_html-->
+<ion-pane>
+  <!-- displays user avatar if they have one-->
+  <ion-header-bar class="bar-positive" align-title="center">
+    <div style="text-align: center; margin-left: .2em;" ng-show="vm.user">
+      <i ng-show="!vm.user.photoURL" ui-sref="tabs.profile" class="icon ion-person avatar"/></i>
+      <img ng-show="vm.user.photoURL" ui-sref="tabs.profile" class="imgDName" ng-src="{{vm.user.photoURL}}">
+      <!-- displays vm.displayName extracted from function onInit() in browseController -->
+      <p class="avText">{{vm.displayName}}</p>
+    </div>
+    <!-- displays Browse tab up top to access browse tab-->
+    <h1 class="title">Browse</h1>
+  </ion-header-bar>
+  <!-- kazeki - Scenerio 1- Browse-Online clicked calls all recipes from API scraper showing spinner while array loads -->
+    <ion-content ng-show="!vm.recipes" class="flex-row has-header has-subheader">
+      <ion-spinner ></ion-spinner>
+    </ion-content>
+  <!-- kazeki - Scenerio 2- page refreshes with no selected recipes  -->
+  <ion-content id="browseAllComponent" ng-show="vm.recipes && !vm.selectedRecipe" class="has-header has-subheader">
+    <ion-list>
+      <!-- kazeki - nav buttons -->
+      <div class="flex-row">
+      <button class="button button-positive marginBottom1" on-tap="vm.previousPage()">Previous Page</button>
+        <button class="button button-positive marginBottom1" on-tap="vm.nextPage()">Next Page</button>
+      </div>
+      <!-- kazeki - on nav click this gets recipe info from firebase to display -->
+      <div on-tap="vm.onlineDetails(recipe.recipe_id)" class="item list-item flex-row" ng-repeat="recipe in vm.recipes">
+        <div style="width: 50%;" class="flex-row">
+        <img style="max-height: 6em;" ng-src="{{recipe.image_url}}" />
+        </div>
+        <div style="width:50%;" class="flex-row">
+        <h3>{{ recipe.title }}</h3>
+        </div>
+        <span></span>
+      </div>
+      <div class="flex-row">
+      <button class="button  button-positive marginTop1" on-tap="vm.previousPage()">Previous Page</button>
+        <button class="button button-positive marginTop1" on-tap="vm.nextPage()">Next Page</button>
+      </div>
+    </ion-list>
+  </ion-content>
+  <!-- changes view to online recipes -->
+  <ion-content id="browseDetail" ng-show="vm.selectedRecipe" class="has-header has-subheader">
+   <!-- <button class="button icon-left ion-heart button-assertive" on-tap="vm.editing=!vm.editing"></button> -->
+    <div class="card">
+      <div class="item flex-row">
+      <img  style="max-width: 8em;" ng-src="{{vm.selectedRecipe.image_url}}" />
+      </div>
+      <h3 class="item flex-row">{{vm.selectedRecipe.publisher}}</h3>
+      <div class="item item-text-wrap flex-row" style="font-weight:bold; font-size:x-large" align="center">{{
+        vm.selectedRecipe.title }}
+      </div>
+      <div class="item item-text-wrap" style="text-align: center" ng-repeat="ingredient in vm.selectedRecipe.ingredients track by $index">{{ ingredient}} </div>
+        <a class="item item-text-wrap" style="text-align: center" href="{{ vm.selectedRecipe.source_url }}" target="_blank">Click here to see the Directions on the Publisher's Website</a>
+    </div>
+    <button class="button button-full button-positive" on-tap="vm.goBack()">Back to Browse</button>
+  </ion-content>
+</ion-pane>

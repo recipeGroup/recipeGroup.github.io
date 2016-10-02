@@ -1,0 +1,58 @@
+<!--160928-recipeApp_www_index_html-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <title></title>
+
+  <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
+  <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+  <link href="css/ionic.app.css" rel="stylesheet">
+  -->
+
+  <!-- ionic/angularjs js -->
+  <script src="lib/ionic/js/ionic.bundle.js"></script>
+  <script src="lib/firebase/firebase.js"></script> <!-- originally 3.3.2-->
+  <script src="lib/angularfire/dist/angularfire.js"></script> <!-- Originally 2.0.2-->
+  <script src="lib/ngstorage/ngStorage.js"></script>
+
+  <!-- cordova script (this will be a 404 during development) -->
+  <script src="cordova.js"></script>
+
+  <!-- your app's js -->
+  <script src="js/app.js"></script>
+</head>
+<body ng-app="app" class="platform-android platform-cordova platform-webview">
+
+<!-- This nav-view is where the tabs component is being displayed-->
+<ion-nav-view></ion-nav-view>
+
+<!-- Firebase Config-->
+<script src="js/config.js"></script>
+<script src="js/Controllers/indexController.js"></script>
+
+<!-- Services-->
+<script src="js/Services/apiCalls.js"></script>
+<script src="js/Services/recipes.js"></script>
+<script src="js/Services/authentication.js"></script>
+<script src="js/Services/user.js"></script>
+<script src="js/Services/toast.js"></script>
+
+<!-- Components-->
+<script src="js/Components/browse/browse.js"></script>
+<script src="js/Components/browse-app/browse-app.js"></script>
+<script src="js/Components/browse-online/browse-online.js"></script>
+<script src="js/Components/feedback/feedback.js"></script>
+<script src="js/Components/home/home.js"></script>
+<script src="js/Components/login/login.js"></script>
+<script src="js/Components/my-recipes/my-recipes.js"></script>
+<script src="js/Components/new-recipe/new-recipe.js"></script>
+<script src="js/Components/tabs/tabs.js"></script>
+<script src="js/Components/profile/profile.js"></script>
+<!-- Day 4, Thu- added this file -->
+<script src="js/Components/recipe-detail/recipe-detail.js"></script>
+</body>
+</html>

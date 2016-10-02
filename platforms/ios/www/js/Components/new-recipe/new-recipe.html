@@ -1,0 +1,75 @@
+<!--160928-recipeApp_new-recipes_html-->
+<ion-pane>
+  <!-- This is the header bar for the New-Recipes Page -->
+  <ion-header-bar class="bar-positive" align-title="center">
+    <div style="text-align: center; margin-left: .2em;" ng-show="vm.user">
+      <i ng-show="!vm.user.photoURL" ui-sref="tabs.profile" class="icon ion-person avatar"/></i>
+      <img ng-show="vm.user.photoURL" ui-sref="tabs.profile" class="imgDName" ng-src="{{vm.user.photoURL}}">
+      <p class="avText">{{vm.displayName}}</p>
+    </div>
+    <h1 class="title">New Recipe</h1>
+  </ion-header-bar>
+
+  <ion-content id="newRecipeComponent" class="has-header has-subheader">
+    <!-- This is the new Recipes Form, where the user can input a new Recipe-->
+
+    <!-- All of the information gathered in the newRecipeForm is assigned as a property on the vm.recipe object, which is then submitted to be stored in firebase and refreshed-->
+    <form name="newRecipeForm">
+      <!-- Here the user provides a title for the recipe-->
+      <label class="item item-input">
+        <span class="input-label">Title</span>
+        <input type="text" ng-model="vm.recipe.title" placeholder="Chocolate Chip Cookies">
+      </label>
+
+      <div>
+        <!-- This div is where the user can provide ingredients information one by one, which is then added to the vm.recipe.ingredients Array-->
+        <ion-item class="flex-row item item-input">
+          <label for="vm.quantity">
+            <span class="marginRight_5">Quantity</span>
+          </label>
+          <input class="detailQuantity" id='vm.quantity' type="text" ng-model=vm.quantity placeholder="3 Cups">
+          <label for="vm.ingredient">
+            <span class="marginRight_5">Ingredient</span>
+          </label>
+          <input class="detailname" id='vm.ingredient' type="text" ng-model=vm.ingredient placeholder="Flour" style="text-align: center">
+        </ion-item>
+        <button class="button button-full button-positive"
+                on-tap="vm.addIngredient(vm.ingredient, vm.quantity)">Add ingredient
+        </button>
+      </div>
+
+      <!-- This Div does an ng-repeat through all of the ingredients to dispaly them to the user upon creation-->
+      <ion-item ng-repeat="ingredient in vm.recipe.ingredients" class="flex-row">
+        <span>{{$index + 1}}. </span>
+        <input class="detailQuantity" type="text" ng-model=ingredient.quantity>
+        <span>|</span>
+        <input class="detailName" type="text" ng-model=ingredient.name>
+        <button class="button button-assertive button-small"
+                on-tap="vm.deleteIngredient($index)">
+          <i class="ion-trash-a"></i>
+        </button>
+      </ion-item>
+
+      <!-- This label allows the user to define directions, which are simply one large string-->
+      <label class="item item-input">
+        <span class="input-label">Directions</span>
+        <textarea ng-model="vm.recipe.directions" style="width: 14em; height: 5em;"
+                  placeholder="1. Get the Oven Hot"></textarea>
+      </label>
+      <ion-item class="item-toggle">
+        <span>{{vm.recipe.status}}</span>
+        <label class="toggle">
+          <input type="checkbox" ng-model="vm.recipe.status" ng-true-value="'Public'"
+                 ng-false-value="'Private'">
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+      </ion-item>
+
+      <!-- This button Submits the vm.recipe object to firebase-->
+      <button class="button button-full button-positive" on-tap="vm.saveRecipe(vm.recipe)">Save Recipe</button>
+    </form>
+
+  </ion-content>
+</ion-pane>

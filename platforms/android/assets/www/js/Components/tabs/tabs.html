@@ -1,0 +1,17 @@
+<!--160928-recipeApp_tabs_html-->
+<!-- These are the tabs for the entire app-->
+
+<ion-tabs class="tabs-positive">
+  <a class="tab-item" ui-sref="tabs.home">HOME</a>
+  <a class="tab-item" ui-sref="tabs.browse">BROWSE</a>
+  <a class="tab-item" ui-sref="tabs.login">
+    <span ng-show="!vm.user">LOGIN</span>
+    <span ng-show="vm.user">LOGOUT</span>
+  </a>
+</ion-tabs>
+
+<!-- This nav-view displays every view that is a child of tabs-->
+<ion-nav-view>
+
+</ion-nav-view>
+

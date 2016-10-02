@@ -1,0 +1,68 @@
+<!--160928-recipeApp_recipe-detail_html-->
+<ion-pane>
+  <ion-header-bar class="bar-positive" align-title="center">
+    <div style="text-align: center; margin-left: .2em;" ng-show="vm.user">
+      <i ng-show="!vm.user.photoURL" ui-sref="tabs.profile" class="icon ion-person avatar"/></i>
+      <img ng-show="vm.user.photoURL" ui-sref="tabs.profile" class="imgDName" ng-src="{{vm.user.photoURL}}">
+      <p class="avText">{{vm.displayName}}</p>
+    </div>
+    <h1 class="title">Recipe Details</h1>
+  </ion-header-bar>
+  <ion-content id="recipeDetailComponent" class="has-header has-subheader">
+    <!-- Day 5, Fri- added card to hold tile and ingredients-->
+    <div class="card" ng-show="!vm.editing">
+      <!-- Day 5, Fri- this button shows edit div -->
+      <button class="button icon-left ion-edit button-energized" on-tap="vm.editing=!vm.editing"></button>
+
+      <div class="item item-text-wrap" style="font-weight:bold; font-size:x-large" align="center">{{
+        vm.selectedRecipe.title }}
+      </div>
+      <div class="item item-text-wrap flex-row" ng-repeat="ingredient in vm.selectedRecipe.ingredients">{{
+        ingredient.quantity
+        }} | {{ ingredient.name }}
+
+      </div>
+      <div class="item item-text-wrap flex-row"> {{ vm.selectedRecipe.directions }}</div>
+      <div class="item item-text-wrap" align="center">{{vm.selectedRecipe.status }}
+      </div>
+    </div>
+<!-- changes to new view for editing purposes -->
+    <ion-list class="myList" ng-show="vm.editing">
+      <ion-item class="item-divider">
+        <input id="detailTitle" type="text" ng-model=vm.selectedRecipe.title>
+      </ion-item>
+      <ion-item ng-repeat="ingredient in vm.selectedRecipe.ingredients" class="flex-row">
+        <input class="detailQuantity" type="text" ng-model=ingredient.quantity placeholder="3 Cups">
+        <span>|</span>
+        <input class="detailName" type="text" ng-model=ingredient.name placeholder="Flour">
+        <button class="button button-assertive button-small"
+                on-tap="vm.deleteLine($index)">
+          <i class="ion-trash-a"></i>
+        </button>
+      </ion-item>
+      <button class="button button-full button-positive"
+      on-tap="vm.addLine()">Add ingredient
+      </button>
+      <label class="item item-input">
+        <span class="input-label">Directions</span>
+        <textarea ng-model=vm.selectedRecipe.directions
+                  style="width: 14em; height: 5em;"></textarea>
+      </label>
+      <ion-item class="item-toggle">
+        <span >{{vm.selectedRecipe.status}}</span>
+        <label class="toggle">
+          <input type="checkbox" ng-model="vm.selectedRecipe.status" ng-true-value="'Public'"
+                 ng-false-value="'Private'">
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+      </ion-item>
+      <button class="button button-block button-positive" on-tap="vm.saveRecipe(vm.selectedRecipe)">Save Recipe</button>
+      <button class="button button-block button-assertive" on-tap="vm.deleteRecipe(vm.selectedRecipe)">Delete Recipe</button>
+    </ion-list>
+
+    <button class="button button-block button-positive" on-tap="vm.goBack()">Back to My Recipes</button>
+  </ion-content>
+
+</ion-pane>

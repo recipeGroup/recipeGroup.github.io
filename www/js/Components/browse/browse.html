@@ -1,0 +1,28 @@
+<!-- 160928-recipeApp-browse_html -->
+<ion-pane>
+  <!-- displays icons to access browse public made recipes and online recipes-->
+  <ion-header-bar class="bar-positive" align-title="center">
+    <div style="text-align: center; margin-left: .2em;" ng-show="vm.user">
+      <i ng-show="!vm.user.photoURL" ui-sref="tabs.profile" class="icon ion-person avatar"/></i>
+      <img ng-show="vm.user.photoURL" ui-sref="tabs.profile" class="imgDName" ng-src="{{vm.user.photoURL}}">
+      <!-- displays vm.displayName extracted from funciion onInit() in browseController -->
+      <p class="avText">{{vm.displayName}}</p>
+    </div>
+  </ion-header-bar>
+  <!-- displays icon to access user public made recipes -->
+  <ion-content id="browseComponent" class="has-header has-subheader">
+    <div>
+      <a ui-sref="tabs.browseApp" class="noDecoration">
+        <i class="icon ion-ios-glasses-outline"></i>
+        <p>Browse App Recipes</p>
+      </a>
+    </div>
+    <!-- displays icon to access online recipes -->
+    <div>
+      <a ui-sref="tabs.browseOnline" class="noDecoration">
+        <i class="icon ion-ios-glasses"></i>
+        <p>Browse Online Recipes</p>
+      </a>
+    </div>
+  </ion-content>
+</ion-pane>

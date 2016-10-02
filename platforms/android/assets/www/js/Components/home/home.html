@@ -1,0 +1,28 @@
+<!--160928-recipeApp_home_html-->
+<ion-pane>
+  <!-- displays home tab -->
+  <ion-header-bar class="bar-positive" align-title="center">
+    <div style="text-align: center; margin-left: .2em;" ng-show="vm.user">
+      <i ng-show="!vm.user.photoURL" ui-sref="tabs.profile" class="icon ion-person avatar"/></i>
+      <img ng-show="vm.user.photoURL" ui-sref="tabs.profile" class="imgDName" ng-src="{{vm.user.photoURL}}">
+      <p class="avText">{{vm.displayName}}</p>
+    </div>
+    <h1 class="title">Home</h1>
+  </ion-header-bar>
+  <ion-content id="homeComponent" class="has-header has-subheader">
+    <!-- displays icon to access user recipes -->
+    <div>
+      <a ui-sref="tabs.myRecipes" class="noDecoration">
+      <i class="icon ion-ios-list-outline"></i>
+      <p>My Recipes</p>
+      </a>
+    </div>
+    <!-- displays icon to allow user to create new recipes -->
+    <div>
+      <a ui-sref="tabs.newRecipe" class="noDecoration">
+      <i class="icon ion-document"></i>
+      <p>Make New Recipe</p>
+      </a>
+    </div>
+  </ion-content>
+</ion-pane>

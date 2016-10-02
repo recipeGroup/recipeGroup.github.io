@@ -1,0 +1,34 @@
+<!--160928-recipeApp_feedback_html-->
+<ion-pane>
+  <ion-header-bar class="bar-positive" align-title="center">
+    <div style="text-align: center; margin-left: .2em;" ng-show="vm.user">
+      <i ng-show="!vm.user.photoURL" ui-sref="tabs.profile" class="icon ion-person avatar"/></i>
+      <img ng-show="vm.user.photoURL" ui-sref="tabs.profile" class="imgDName" ng-src="{{vm.user.photoURL}}">
+      <p class="avText">{{vm.displayName}}</p>
+    </div>
+    <h1 class="title">Feedback</h1>
+  </ion-header-bar>
+  <ion-content id="feedbackComponent" class="has-header has-subheader">
+    <form name="newFeedbackForm" ng-submit="vm.saveFeedback(vm.feedback)">
+    <div class="item list-item" style="text-align: center">
+      <h3>Please Rate our App on a Scale from 1-5</h3>
+    </div>
+    <ion-list>
+      <ion-radio ng-model="vm.feedback.rating" ng-value="'1'">1</ion-radio>
+      <ion-radio ng-model="vm.feedback.rating" ng-value="'2'">2</ion-radio>
+      <ion-radio ng-model="vm.feedback.rating" ng-value="'3'">3</ion-radio>
+      <ion-radio ng-model="vm.feedback.rating" ng-value="'4'">4</ion-radio>
+      <ion-radio ng-model="vm.feedback.rating" ng-value="'5'">5</ion-radio>
+    </ion-list>
+
+    <!-- This label allows the user to define directions, which are simply one large string-->
+    <label class="item item-input">
+      <span class="input-label">Feedback</span>
+        <textarea ng-model="vm.feedback.text" style="width: 14em; height: 5em;"
+                  placeholder="This app is awesome take my money!"></textarea>
+    </label>
+    <!-- This button Submits the vm.recipe object to firebase-->
+    <button class="button button-full button-balanced" type="submit">Submit Feedback</button>
+    </form>
+  </ion-content>
+</ion-pane>

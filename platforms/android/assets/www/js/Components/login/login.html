@@ -1,0 +1,69 @@
+<!--160928-recipeApp_Comp_login_html-->
+<ion-pane>
+  <!-- This is the header bar for the Login Page-->
+  <ion-header-bar class="bar bar-header bar-positive" align-title="center">
+    <div style="text-align: center; margin-left: .2em;" ng-show="vm.user">
+      <i ng-show="!vm.user.photoURL" ui-sref="tabs.profile" class="icon ion-person avatar"/></i>
+      <img ng-show="vm.user.photoURL" ui-sref="tabs.profile" class="imgDName" ng-src="{{vm.user.photoURL}}">
+      <p class="avText">{{vm.displayName}}</p>
+    </div>
+    <h1 class="title">Login</h1>
+  </ion-header-bar>
+
+
+  <ion-content id="loginComponent" class="has-header has-subheader">
+    <!-- This is the login Div, it is only displayed to the user if vm.user does not exist on this controller-->
+    <div class='loginDiv' ng-if="!vm.user">
+      <!--
+      <button class="button button-positive button-block" on-tap="vm.login('facebook')">Login with Facebook</button>
+      <button class="button button-positive button-block" on-tap="vm.login('google')">Login with Google</button>
+      -->
+      <button class="button button-positive button-block" on-tap="vm.showEmailForm()">Login with Email</button>
+    </div>
+
+    <!-- This is the email login form, it only shows if we select the email option-->
+    <form class="emailForm" name="emailForm" ng-submit="vm.login('email', email, password)"
+          ng-show="vm.showTheEmailForm">
+      <label class="item item-input">
+        <span class="input-label">Email</span>
+        <input type="email" name="emailInput" ng-model="email" required>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Password</span>
+        <input type="password" name="passwordInput" ng-model="password" required>
+      </label>
+
+      <button ng-disabled="$scope.emailForm.$invalid" class="button button-positive button-block" type="submit">Submit
+      </button>
+      <!-- This <p> allows the user to create a new login through email, and opens the createEmailForm once selected-->
+      <p style="color: blue; cursor: pointer;" on-tap="vm.showCreateEmailForm()">Create a New Account?</p>
+    </form>
+
+    <!-- The createEmailForm is displayed once the user has selected to create an email-->
+    <form class="emailForm" name="createEmailForm"
+          ng-submit="vm.createEmailLogin(createEmail, createPassword1, createPassword2)"
+          ng-if="vm.showTheCreateEmailForm">
+      <label class="item item-input">
+        <span class="input-label">Email</span>
+        <input type="email" name="emailInput" ng-model="createEmail" required>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Password 1</span>
+        <input type="password" name="passwordInput1" ng-model="createPassword1" required>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Password 2</span>
+        <input type="password" name="passwordInput2" ng-model="createPassword2" required>
+      </label>
+      <button ng-disabled="$scope.createEmailForm.$invalid" class="button button-positive button-block" type="submit">
+        Submit
+      </button>
+    </form>
+
+    <!-- This is the logout button, it is only displayed to the user once vm.user has been established-->
+    <div class="loginDiv" ng-if="vm.user">
+      <button class="button button-positive button-block" on-tap="vm.logout()">Logout</button>
+      <button class="button button-balanced button-block" ui-sref="tabs.feedback">Submit Feedback</button>
+    </div>
+  </ion-content>
+</ion-pane>

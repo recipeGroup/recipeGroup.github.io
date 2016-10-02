@@ -1,0 +1,35 @@
+<ion-pane>
+  <!-- browse public recipes -->
+  <ion-header-bar class="bar-positive" align-title="center">
+    <div style="text-align: center; margin-left: .2em;" ng-show="vm.user">
+      <i ng-show="!vm.user.photoURL" ui-sref="tabs.profile" class="icon ion-person avatar"/></i>
+      <img ng-show="vm.user.photoURL" ui-sref="tabs.profile" class="imgDName" ng-src="{{vm.user.photoURL}}">
+      <!-- displays vm.displayName extracted from function onInit() in browseController -->
+      <p class="avText">{{vm.displayName}}</p>
+    </div>
+  </ion-header-bar>
+  <ion-content ng-show="!vm.appRecipes" class="flex-row has-header has-subheader">
+    <ion-spinner ></ion-spinner>
+  </ion-content>
+<!-- kazeki - onInit evokes recipesService for recipes -->
+  <ion-content id="browseAppComponent" class="has-header has-subheader" ng-show="vm.appRecipes && !vm.selectedRecipe">
+    <button class="button button-full button-stable" on-tap="vm.selectRecipe(recipe)" ng-repeat="recipe in vm.appRecipes">
+      {{recipe.title}}
+    </button>
+  </ion-content>
+  <ion-content id="browseDetail" ng-show="vm.selectedRecipe" class="has-header has-subheader">
+   <!-- <button class="button icon-left ion-heart button-assertive" on-tap="vm.saveRecipe(vm.selectedRecipe);"></button> -->
+    <div class="card">
+      <!-- kazeki - display title -->
+      <div class="item item-text-wrap" style="font-weight:bold; font-size:x-large" align="center">{{ vm.selectedRecipe.title }}
+      </div>
+      <!-- kazeki - draw ingredients from firebase to display -->
+      <div class="item item-text-wrap flex-row" ng-repeat="ingredient in vm.selectedRecipe.ingredients">{{ ingredient.quantity }} | {{ ingredient.name }}
+      </div>
+      <div class="item item-text-wrap flex-row"> {{ vm.selectedRecipe.directions }}</div>
+      </div>
+    </div>
+    <!-- click button to return to page of recipes -->
+    <button class="button button-full button-positive" on-tap="vm.goBack()">Back to Browse</button>
+  </ion-content>
+</ion-pane>
