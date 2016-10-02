@@ -4,7 +4,7 @@
     .component(
       'tabs',{
         bindings: {},
-        templateUrl: 'js/Components/tabs/tabs.html',
+        templateUrl: 'www/js/Components/tabs/tabs.html',
         controller: tabsController,
         controllerAs: 'vm'
       });

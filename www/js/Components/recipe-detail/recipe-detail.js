@@ -4,7 +4,7 @@
          .component(
            'recipeDetail', {
              bindings: {},
-             templateUrl: 'js/Components/recipe-detail/recipe-detail.html',
+             templateUrl: 'www/js/Components/recipe-detail/recipe-detail.html',
              controller: recipeDetailController,
              controllerAs: 'vm'
            }

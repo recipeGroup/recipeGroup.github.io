@@ -3,7 +3,7 @@
     .component(
       'feedback', {
         bindings: {},
-        templateUrl: 'js/Components/feedback/feedback.html',
+        templateUrl: 'www/js/Components/feedback/feedback.html',
         controller: feedbackController,
         controllerAs: 'vm'
       });

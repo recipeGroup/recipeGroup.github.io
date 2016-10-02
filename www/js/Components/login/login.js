@@ -3,7 +3,7 @@
          .component(
            'login', {
              bindings: {},
-             templateUrl: 'js/Components/login/login.html',
+             templateUrl: 'www/js/Components/login/login.html',
              controller: loginController,
              controllerAs: 'vm'
            }

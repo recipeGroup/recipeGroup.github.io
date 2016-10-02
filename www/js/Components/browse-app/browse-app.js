@@ -4,7 +4,7 @@
     .component(
       'browseApp',{
         bindings: {},
-        templateUrl: 'js/Components/browse-app/browse-app.html',
+        templateUrl: 'www/js/Components/browse-app/browse-app.html',
         controller: browseAppController,
         controllerAs: 'vm'
       });

@@ -4,7 +4,7 @@
     .component(
       'browseOnline',{
         bindings: {},
-        templateUrl: 'js/Components/browse-online/browse-online.html',
+        templateUrl: 'www/js/Components/browse-online/browse-online.html',
         controller: browseOnlineController,
         controllerAs: 'vm'
       });

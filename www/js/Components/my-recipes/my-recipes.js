@@ -3,7 +3,7 @@
     .component(
       'myRecipes',{
         bindings: {},
-        templateUrl: 'js/Components/my-recipes/my-recipes.html',
+        templateUrl: 'www/js/Components/my-recipes/my-recipes.html',
         controller: myRecipesController,
         controllerAs: 'vm'
       });

@@ -4,7 +4,7 @@
     .component(
       'profile', {
         bindings: {},
-        templateUrl: 'js/Components/profile/profile.html',
+        templateUrl: 'www/js/Components/profile/profile.html',
         controller: profileController,
         controllerAs: 'vm'
       });

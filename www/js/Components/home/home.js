@@ -4,7 +4,7 @@
     .component(
       'home',{
         bindings: {},
-        templateUrl: 'js/Components/home/home.html',
+        templateUrl: 'www/js/Components/home/home.html',
         controller: homeController,
         controllerAs: 'vm'
       });
