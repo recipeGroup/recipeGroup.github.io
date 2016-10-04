@@ -18,7 +18,7 @@
       <!-- Here the user provides a title for the recipe-->
       <label class="item item-input">
         <span class="input-label">Title</span>
-        <input type="text" ng-model="vm.recipe.title" placeholder="Chocolate Chip Cookies">
+        <input type="text" required name="title" ng-model="vm.recipe.title" placeholder="Chocolate Chip Cookies">
       </label>
 
       <div>
@@ -41,9 +41,9 @@
       <!-- This Div does an ng-repeat through all of the ingredients to dispaly them to the user upon creation-->
       <ion-item ng-repeat="ingredient in vm.recipe.ingredients" class="flex-row">
         <span>{{$index + 1}}. </span>
-        <input class="detailQuantity" type="text" ng-model=ingredient.quantity>
+        <input class="detailQuantity" required name='quantity' type="text" ng-model=ingredient.quantity>
         <span>|</span>
-        <input class="detailName" type="text" ng-model=ingredient.name>
+        <input class="detailName" required name="ingredients" type="text" ng-model=ingredient.name>
         <button class="button button-assertive button-small"
                 on-tap="vm.deleteIngredient($index)">
           <i class="ion-trash-a"></i>
@@ -53,13 +53,13 @@
       <!-- This label allows the user to define directions, which are simply one large string-->
       <label class="item item-input">
         <span class="input-label">Directions</span>
-        <textarea ng-model="vm.recipe.directions" style="width: 14em; height: 5em;"
+        <textarea required ng-model="vm.recipe.directions" style="width: 14em; height: 5em;"
                   placeholder="1. Get the Oven Hot"></textarea>
       </label>
       <ion-item class="item-toggle">
         <span>{{vm.recipe.status}}</span>
         <label class="toggle">
-          <input type="checkbox" ng-model="vm.recipe.status" ng-true-value="'Public'"
+          <input type="checkbox" name="toggle" ng-model="vm.recipe.status" ng-true-value="'Public'"
                  ng-false-value="'Private'">
           <div class="track">
             <div class="handle"></div>
@@ -68,7 +68,7 @@
       </ion-item>
 
       <!-- This button Submits the vm.recipe object to firebase-->
-      <button class="button button-full button-positive" on-tap="vm.saveRecipe(vm.recipe)">Save Recipe</button>
+      <button class="button button-full button-positive" ng-disabled="newRecipeForm.$invalid || vm.recipe.ingredients.length === 0" on-tap="vm.saveRecipe(vm.recipe)">Save Recipe</button>
     </form>
 
   </ion-content>

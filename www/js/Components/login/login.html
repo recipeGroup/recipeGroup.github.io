@@ -31,7 +31,7 @@
         <input type="password" name="passwordInput" ng-model="password" required>
       </label>
 
-      <button ng-disabled="$scope.emailForm.$invalid" class="button button-positive button-block" type="submit">Submit
+      <button ng-disabled="emailForm.$invalid" class="button button-positive button-block" type="submit">Submit
       </button>
       <!-- This <p> allows the user to create a new login through email, and opens the createEmailForm once selected-->
       <p style="color: blue; cursor: pointer;" on-tap="vm.showCreateEmailForm()">Create a New Account?</p>
@@ -53,7 +53,7 @@
         <span class="input-label">Password 2</span>
         <input type="password" name="passwordInput2" ng-model="createPassword2" required>
       </label>
-      <button ng-disabled="$scope.createEmailForm.$invalid" class="button button-positive button-block" type="submit">
+      <button ng-disabled="createEmailForm.$invalid" class="button button-positive button-block" type="submit">
         Submit
       </button>
     </form>
